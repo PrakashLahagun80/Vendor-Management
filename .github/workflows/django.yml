@@ -3,7 +3,7 @@ name: Django Github Action
 on: 
   push:
     branches: [main]
-  jobs:
+jobs:
     build:
       runs-on: ubuntu-latest
       strategy:
