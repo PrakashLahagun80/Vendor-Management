@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
+
 class Vendor(models.Model):
     name = models.CharField(max_length=255)
     contact_details = models.TextField()

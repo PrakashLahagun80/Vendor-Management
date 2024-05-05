@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
-from vendor.models import Vendor  
+from vendor.models import Vendor
+
 
 class PurchaseOrder(models.Model):
     PO_STATUS_CHOICES = [

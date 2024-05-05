@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Vendor
 from purchaseorder.models import PurchaseOrder
-from .serializers import VendorSerializer,VendorPerformanceSerializer
+from .serializers import VendorSerializer, VendorPerformanceSerializer
 
 
 class VendorListCreateAPIView(APIView):
@@ -18,6 +18,7 @@ class VendorListCreateAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class VendorRetrieveUpdateDeleteAPIView(APIView):
     def get(self, request, vendor_id):
@@ -45,7 +46,7 @@ class VendorPerformanceAPIView(APIView):
             vendor = Vendor.objects.get(pk=vendor_id)
         except Vendor.DoesNotExist:
             return Response({"message": "Vendor not found"}, status=status.HTTP_404_NOT_FOUND)
-        
+
         serializer = VendorPerformanceSerializer(vendor)
         return Response(serializer.data)
 
@@ -56,7 +57,7 @@ class AcknowledgePurchaseOrderAPIView(APIView):
             purchase_order = PurchaseOrder.objects.get(pk=po_id)
         except PurchaseOrder.DoesNotExist:
             return Response({"message": "Purchase Order not found"}, status=status.HTTP_404_NOT_FOUND)
-        
+
         purchase_order.status = 'acknowledged'
         purchase_order.save()
         return Response({"message": "Purchase Order acknowledged successfully"})
